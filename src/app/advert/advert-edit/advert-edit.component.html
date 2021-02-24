@@ -1,0 +1,103 @@
+<div class="card">
+  <div class="card-header">
+    {{title}}
+  </div>
+
+  <div class="card-body">
+    <form novalidate
+          
+          [formGroup]="advertForm">
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="productNameId">Product Name</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="productNameId"
+                 type="text"
+                 placeholder="Name (required)"
+                 formControlName="productName"
+                 [ngClass]="{'is-invalid': (advertForm.get('productName').touched || advertForm.get('productName').dirty) && advertForm.get('productName').valid  }" />
+          <span class="invalid-feedback">
+           <span *ngIf="advertForm.get('productName').errors?.required">
+              Please enter your product name.
+            </span>
+            <span *ngIf="advertForm.get('productName').errors?.minlength">
+              The product name must be longer than 3 characters.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="productCodeId">Product decription </label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="productCodeId"
+                 type="text"
+                 placeholder="Code (required)"
+                 formControlName="description"
+                 [ngClass]="{'is-invalid': (advertForm.get('description').touched || advertForm.get('description').dirty) && advertForm.get('description').valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="advertForm.get('description').errors?.required">
+              Please enter your product decscription.
+            </span>
+            <span *ngIf="advertForm.get('description').errors?.minlength">
+              The product name must be longer than 3 characters.
+            </span>
+          </span>
+        </div>
+      </div>
+
+
+   
+      
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="descriptionId">price</label>
+
+        <div class="col-md-8">
+          <textarea class="form-control"
+                    id="descriptionId"
+                    placeholder="price"
+                    rows=3
+                    formControlName="price"
+                    [ngClass]="{'is-invalid':(advertForm.get('price').touched || advertForm.get('price').dirty) && advertForm.get('price').valid}"></textarea>
+          <span class="invalid-feedback">
+           <span *ngIf="advertForm.get('price').errors?.required">
+              Please enter your product price.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4">
+          <button class="btn btn-primary mr-3"
+                  style="width:80px;"
+                  type="submit"
+                  [title]="advertForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                  [disabled]="!advertForm.valid">
+            Save
+          </button>
+          <button class="btn btn-outline-secondary mr-3"
+                  style="width:80px;"
+                  type="button"
+                  title="Cancel your edits"
+                  [routerLink]="['/products']">
+            Cancel
+          </button>
+          <button class="btn btn-outline-warning"
+                  style="width:80px"
+                  type="button"
+                  title="Delete this product"
+                  >
+            Delete
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
